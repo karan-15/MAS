@@ -1,0 +1,7 @@
+pyyaml>=6.0
+typer>=0.12
+pandas>=2.0
+numpy>=1.24,<2.0
+tqdm>=4.67
+Whoosh>=2.7.4
+scikit-learn>=1.3

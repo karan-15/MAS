@@ -1,0 +1,21 @@
+data:
+  documents_path: data/mini_documents.jsonl
+  questions_path: data/mini_dev.json
+  output_csv: outputs/mini_predictions.csv
+
+index:
+  whoosh_dir: index_artifacts/whoosh
+  bm25_topk: 300
+
+pipeline:
+  seed: 42
+  query:
+    n_queries: 4
+  filter:
+    min_chars: 120
+    max_docs_after_filter: 150
+  supports:
+    k: 50
+
+stance:
+  mode: "baseline"   # baseline for now (no LLM yet)

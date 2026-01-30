@@ -1,0 +1,41 @@
+data:
+  documents_path: data/documents.jsonl
+  questions_path: data/test.json
+  output_csv: outputs/test_predictions.csv
+
+index:
+  whoosh_dir: index_artifacts/whoosh
+  bm25_topk: 500
+
+# OPTIONAL: comment this out if dense hurts
+dense:
+  embeddings_path: data/id_to_embedding.npz
+  faiss_path: index_artifacts/dense.faiss
+  idmap_path: index_artifacts/dense_idmap.json
+  topk: 300
+  rrf_k: 100
+
+embedder:
+  provider: "ollama"
+  model: "nomic-embed-text"
+  host: "http://localhost:11434"
+
+pipeline:
+  seed: 42
+  query:
+    n_queries: 6
+  filter:
+    min_chars: 200
+    max_docs_after_filter: 60
+  supports:
+    k: 100
+
+stance:
+  mode: "llm"
+  provider: "hf"
+  model: "HuggingFaceTB/SmolLM3-3B"
+  batch_size: 2
+  excerpt_chars: 450
+  max_docs_for_stance: 8
+  cache_dir: "cache/stance"
+  max_tokens: 256
